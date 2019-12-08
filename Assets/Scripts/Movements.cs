@@ -7,6 +7,8 @@ public class Movements : MonoBehaviour
     public float speed;
     private Rigidbody rb;
 
+    private Vector3 newPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +20,14 @@ public class Movements : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal"); // Raw : directly -1/0/1 without smooth.
         float vertical = Input.GetAxisRaw("Vertical");
-
-        Vector3 tempVector = new Vector3(horizontal, 0, vertical);
-        tempVector = tempVector.normalized * speed * Time.deltaTime; // so we don't go faster in diagonal !
-        rb.MovePosition(transform.position + tempVector);
+        newPos = new Vector3(horizontal, 0, vertical);
 
         // TODO : smooth
+    }
+
+    private void FixedUpdate()
+    {
+        newPos = newPos.normalized * speed * Time.fixedDeltaTime; // so we don't go faster in diagonal !
+        rb.MovePosition(transform.position + newPos);        
     }
 }
