@@ -20,7 +20,7 @@ public class Movements : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 tempVector = new Vector3(horizontal, 0, vertical);
-        tempVector = tempVector.normalized * speed * Time.deltaTime; // so we don't gofaster in diagonal !
+        tempVector = tempVector.normalized * speed * Time.deltaTime; // so we don't go faster in diagonal !
         rb.MovePosition(transform.position + tempVector);
 
         // TODO : smooth
