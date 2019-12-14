@@ -196,13 +196,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331917942}
-  m_LocalRotation: {x: 0.19056772, y: -0, z: -0, w: 0.9816741}
-  m_LocalPosition: {x: 0, y: 3.39, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.23447584, y: -0, z: -0, w: 0.972122}
+  m_LocalPosition: {x: 0.56685066, y: 6.94, z: -13.79}
+  m_LocalScale: {x: 0.54864, y: 0.54864, z: 0.54864}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.972, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.121002, y: 0, z: 0}
 --- !u!1 &1221504781
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +294,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1391663825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391663826}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1391663826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391663825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.14, z: -0.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2072879208}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1592515609
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +524,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.56685066, y: 1.52, z: 0.24131775}
   m_LocalScale: {x: 0.54864, y: 0.54864, z: 0.54864}
-  m_Children: []
+  m_Children:
+  - {fileID: 1391663826}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -510,5 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba8012e1822194a8d7bb519b396cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 10
+  speed: 5
+  jumpForce: 400
+  airSpeedMultiplier: 0.3
+  moveTransitionSpeed: 10
+  targetMoveDelta: {x: 0, y: 0, z: 0}
+  currentMoveDelta: {x: 0, y: 0, z: 0}

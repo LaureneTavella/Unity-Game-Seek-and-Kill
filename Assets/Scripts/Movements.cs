@@ -7,11 +7,14 @@ public class Movements : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float airSpeedMultiplier;
+    public float moveTransitionSpeed;
 
     private Rigidbody rb;
-    private Vector3 newPos;
+    private Vector3 deltaPosition;
     private bool isGrounded = true;
     private float distanceToGround;
+    public Vector3 targetMoveDelta;
+    public Vector3 currentMoveDelta;
 
     // Start is called before the first frame update
     void Start()
@@ -26,19 +29,17 @@ public class Movements : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal"); // Raw : directly -1/0/1 without smooth.
         float vertical = Input.GetAxisRaw("Vertical");
-        newPos = new Vector3(horizontal, 0, vertical);
+
+        float targetSpeed = isGrounded ? speed : speed * airSpeedMultiplier;
+        targetMoveDelta = (transform.right * horizontal + transform.forward * vertical).normalized * targetSpeed; // so we don't go faster in diagonal !
+        currentMoveDelta = Vector3.Lerp(currentMoveDelta, targetMoveDelta, Time.deltaTime * moveTransitionSpeed); 
 
         UpdateGrounded();
-
-        // TODO : smooth
     }
 
     private void FixedUpdate()
     {
-        float realSpeed = isGrounded ? speed : speed * airSpeedMultiplier;
-
-        newPos = newPos.normalized * realSpeed * Time.fixedDeltaTime; // so we don't go faster in diagonal !
-        rb.MovePosition(transform.position + newPos);
+        rb.MovePosition(rb.position + currentMoveDelta * Time.fixedDeltaTime);
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
